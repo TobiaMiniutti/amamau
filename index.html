@@ -22,34 +22,75 @@
       align-items: center;
       justify-content: center;
       background: #000;
-      color: #fff;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
                    "Segoe UI", sans-serif;
+      overflow: hidden;
+      animation: bodyFade 1.2s ease-out both;
     }
 
-    .logo {
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
-      letter-spacing: 0.18em;
-      text-transform: lowercase;
-      font-weight: 600;
-      text-align: center;
-      text-shadow: 0 0 18px rgba(255, 255, 255, 0.15);
-      animation: fadeIn 1.2s ease-out both;
+    .logo-wrapper {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(12px, 3vw, 24px);
+      border-radius: 999px;
+      /* leggero bagliore intorno al logo */
+      box-shadow:
+        0 0 0 0 rgba(255,255,255,0.0),
+        0 0 40px rgba(255,255,255,0.08);
+      animation: logoFade 1.3s cubic-bezier(0.19, 1, 0.22, 1) 0.2s both;
     }
 
-    @keyframes fadeIn {
+    .logo-wrapper img {
+      display: block;
+      max-width: min(260px, 60vw);
+      height: auto;
+      filter: drop-shadow(0 0 24px rgba(255,255,255,0.12));
+      transform-origin: center;
+      transition:
+        transform 400ms ease,
+        filter 400ms ease,
+        opacity 400ms ease;
+    }
+
+    .logo-wrapper:hover img {
+      transform: scale(1.03);
+      filter: drop-shadow(0 0 32px rgba(255,255,255,0.35));
+      opacity: 1;
+    }
+
+    @keyframes bodyFade {
+      from {
+        background: #000;
+        opacity: 0;
+      }
+      to {
+        background: #000;
+        opacity: 1;
+      }
+    }
+
+    @keyframes logoFade {
       from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(18px) scale(0.96);
+        box-shadow:
+          0 0 0 0 rgba(255,255,255,0.0),
+          0 0 0 rgba(255,255,255,0.0);
       }
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+        box-shadow:
+          0 0 0 0 rgba(255,255,255,0.0),
+          0 0 40px rgba(255,255,255,0.08);
       }
     }
   </style>
 </head>
 <body>
-  <div class="logo">amamau</div>
+  <div class="logo-wrapper">
+    <img src="logo.png" alt="amamau logo">
+  </div>
 </body>
 </html>
